@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/settings_Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:contentInsetStartWithNavigation="64dp"
+        app:navigationIcon="@drawable/arrow_back_icon"
+        app:title="@string/settings"
+        app:titleTextAppearance="@style/headers_text" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+
+        android:text="@string/night_mode"
+        android:textAppearance="@style/settings_text"
+
+        android:layout_marginTop="@dimen/header_margin"
+        android:paddingVertical="@dimen/settings_text_vertical_padding"
+        android:paddingStart="@dimen/middle_padding"
+        android:paddingEnd="18dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:drawableEnd="@drawable/share_icon"
+        android:text="@string/share_app"
+        android:textAppearance="@style/settings_text"
+
+        android:paddingVertical="@dimen/settings_text_vertical_padding"
+        android:paddingStart="@dimen/middle_padding"
+        android:paddingEnd="@dimen/icon_padding_end"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:drawableEnd="@drawable/support_icon"
+        android:text="@string/support"
+        android:textAppearance="@style/settings_text"
+
+        android:paddingVertical="@dimen/settings_text_vertical_padding"
+        android:paddingStart="@dimen/middle_padding"
+        android:paddingEnd="@dimen/icon_padding_end"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:drawableEnd="@drawable/arrow_forward_icon"
+        android:text="@string/user_agreement"
+        android:textAppearance="@style/settings_text"
+
+        android:paddingVertical="@dimen/settings_text_vertical_padding"
+        android:paddingStart="@dimen/middle_padding"
+        android:paddingEnd="@dimen/icon_padding_end"/>
+
+</LinearLayout>

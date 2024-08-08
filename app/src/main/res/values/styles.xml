@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="headers_text">
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="fontWeight">500</item>
+        <item name="android:textColor">@color/black_header</item>
+    </style>
+
+    <style name="settings_text">
+        <item name="android:textSize">@dimen/settings_text_size</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textColor">@color/black_main</item>
+    </style>
+
+</resources>

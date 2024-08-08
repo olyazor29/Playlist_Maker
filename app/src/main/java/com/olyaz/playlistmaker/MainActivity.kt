@@ -1,10 +1,14 @@
 package com.olyaz.playlistmaker
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,5 +20,33 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+
+        val searchButton = findViewById<Button>(R.id.search_button)
+        val libraryButton = findViewById<Button>(R.id.library_button)
+        val settingsButton = findViewById<Button>(R.id.settings_button)
+
+        val searchButtonListener: View.OnClickListener = object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val searchIntent = Intent(this@MainActivity, SearchActivity::class.java)
+                startActivity(searchIntent)
+            }
+
+        }
+
+        searchButton.setOnClickListener(searchButtonListener)
+
+        libraryButton.setOnClickListener {
+            val libraryIntent = Intent(this@MainActivity, LibraryActivity::class.java)
+            startActivity(libraryIntent)
+        }
+
+        settingsButton.setOnClickListener {
+            val settingsIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+            startActivity(settingsIntent)
+        }
+
+
     }
 }
