@@ -1,11 +1,7 @@
 package com.olyaz.playlistmaker
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.window.OnBackInvokedDispatcher
-import androidx.activity.OnBackPressedCallback
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 
 class SettingsActivity : AppCompatActivity() {
@@ -13,8 +9,9 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val returnButton = findViewById<ImageView>(R.id.returnButton)
-        returnButton.setOnClickListener{
+        val settingToolBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.settings_Toolbar)
+
+        settingToolBar.setNavigationOnClickListener {
             finish()
         }
     }

@@ -18,8 +18,8 @@
         android:textColor="@color/white"
 
         android:paddingTop="14dp"
-        android:paddingBottom="@dimen/middle_margin"
-        android:paddingStart="@dimen/middle_margin" />
+        android:paddingBottom="@dimen/middle_padding"
+        android:paddingStart="@dimen/middle_padding" />
     
     <Button
         android:id="@+id/search_button"
@@ -28,10 +28,8 @@
         android:layout_weight="1"
 
         android:text="@string/search"
-        android:textColor="@color/black_header"
+        style="@style/headers_text"
         android:textAllCaps="false"
-        android:textSize="@dimen/text_size"
-        android:textFontWeight="500"
 
         app:icon="@drawable/search_icon"
         app:iconGravity="textStart"
@@ -39,7 +37,7 @@
         app:iconTint="@color/black_header"
 
         android:gravity="center"
-        android:layout_marginHorizontal="@dimen/middle_margin"
+        android:layout_marginHorizontal="@dimen/middle_padding"
         android:layout_marginTop="@dimen/header_margin"
         app:cornerRadius="@dimen/corner_button"
         android:backgroundTint="@color/white"/>
@@ -51,10 +49,8 @@
         android:layout_weight="1"
 
         android:text="@string/library"
-        android:textColor="@color/black_header"
+        style="@style/headers_text"
         android:textAllCaps="false"
-        android:textSize="@dimen/text_size"
-        android:textFontWeight="500"
 
         app:icon="@drawable/library_icon"
         app:iconGravity="textStart"
@@ -62,8 +58,8 @@
         app:iconTint="@color/black_header"
 
         android:gravity="center"
-        android:layout_marginHorizontal="@dimen/middle_margin"
-        android:layout_marginTop="@dimen/middle_margin"
+        android:layout_marginHorizontal="@dimen/middle_padding"
+        android:layout_marginTop="@dimen/middle_padding"
         app:cornerRadius="@dimen/corner_button"
         android:backgroundTint="@color/white"/>
 
@@ -74,10 +70,8 @@
         android:layout_weight="1"
 
         android:text="@string/settings"
-        android:textColor="@color/black_header"
+        style="@style/headers_text"
         android:textAllCaps="false"
-        android:textSize="@dimen/text_size"
-        android:textFontWeight="500"
 
         app:icon="@drawable/settings_icon"
         app:iconGravity="textStart"
@@ -85,8 +79,8 @@
         app:iconTint="@color/black_header"
 
         android:gravity="center"
-        android:layout_marginHorizontal="@dimen/middle_margin"
-        android:layout_marginTop="@dimen/middle_margin"
+        android:layout_marginHorizontal="@dimen/middle_padding"
+        android:layout_marginTop="@dimen/middle_padding"
         app:cornerRadius="@dimen/corner_button"
         android:backgroundTint="@color/white"
         android:layout_marginBottom="28dp"/>
