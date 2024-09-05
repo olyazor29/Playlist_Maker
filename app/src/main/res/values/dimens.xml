@@ -4,7 +4,7 @@
     <dimen name="text_size">22sp</dimen>
     <dimen name="settings_text_size">16sp</dimen>
     <dimen name="corner_button">16dp</dimen>
-    <dimen name="little_padding">8dp</dimen>
+    <dimen name="button_icon_padding">8dp</dimen>
     <dimen name="header_margin">24dp</dimen>
     <dimen name="icon_padding_end">12dp</dimen>
     <dimen name="settings_text_vertical_padding">21dp</dimen>
