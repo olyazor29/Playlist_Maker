@@ -3,7 +3,7 @@ package com.olyaz.playlistmaker
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toolbar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -38,10 +38,15 @@ class SettingsActivity : AppCompatActivity() {
                 data = Uri.parse("mailto:${getString(R.string.student_email)}")
                 putExtra(Intent.EXTRA_SUBJECT, getString(R.string.support_email_subject))
                 putExtra(Intent.EXTRA_TEXT, getString(R.string.support_email_text))
-                type = "text/plain"
             }
 
-            startActivity(supportIntent)
+            if (supportIntent.resolveActivity(packageManager) != null) {
+                startActivity(supportIntent)
+            } else {
+                Toast.makeText(this, getString(R.string.mail_error), Toast.LENGTH_SHORT).show()
+            }
+
+
         }
 
         val agreementTextView = findViewById<MaterialTextView>(R.id.agreementTextView)
