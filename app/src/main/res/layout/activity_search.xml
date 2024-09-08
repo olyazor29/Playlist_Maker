@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorPrimary">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/searchToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:contentInsetStartWithNavigation="64dp"
+        app:navigationIcon="@drawable/arrow_back_icon"
+        app:title="@string/search"
+        app:titleTextAppearance="@style/ScreenHeaderTextStyle" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="@dimen/middle_padding"
+            android:layout_marginVertical="@dimen/button_icon_padding"
+            android:background="@drawable/search_button"
+            android:drawableStart="@drawable/search_smaller"
+            android:drawablePadding="@dimen/button_icon_padding"
+            android:hint="@string/search"
+            android:maxLines="1"
+            android:inputType="text"
+            android:paddingStart="@dimen/icon_padding_end"
+            android:paddingEnd="@dimen/icon_padding_end"
+            android:textAppearance="@style/SettingsTextStyle"
+            android:textColorHint="?attr/colorOnTertiary"
+            android:freezesText="true"/>
+
+        <ImageButton
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clear_edittext"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="30dp"
+            android:background="?attr/colorTertiary"
+            android:visibility="invisible"/>
+
+    </FrameLayout>
+
+</LinearLayout>
