@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -22,6 +23,8 @@ class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView)
             .load(model.artworkUrl100)
             .placeholder(R.drawable.placeholder_track)
+            .error(R.drawable.placeholder_track)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .fitCenter()
             .transform(RoundedCorners(dpToPx(2f, itemView.context)))
             .into(trackCover)

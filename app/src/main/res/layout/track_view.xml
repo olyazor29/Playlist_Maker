@@ -9,7 +9,6 @@
 
     <ImageView
         android:id="@+id/trackCoverImageView"
-        android:src="@drawable/placeholder_track"
         android:layout_width="@dimen/track_cover_size"
         android:layout_height="@dimen/track_cover_size"
         android:layout_marginVertical="@dimen/button_icon_padding"

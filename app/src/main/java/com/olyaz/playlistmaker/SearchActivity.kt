@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
+import com.olyaz.playlistmaker.databinding.ActivitySearchBinding
 
 
 private const val SEARCH_VALUE_KEY = "SEARCH_EDIT_TEXT_VALUE"
@@ -18,10 +19,12 @@ private const val SEARCH_VALUE_KEY = "SEARCH_EDIT_TEXT_VALUE"
 class SearchActivity : AppCompatActivity() {
 
     private var searchStringValue: String? = null
+    private lateinit var binding: ActivitySearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val mockListOfTracks: ArrayList<Track> = arrayListOf(
             Track(
@@ -51,31 +54,27 @@ class SearchActivity : AppCompatActivity() {
                 "https://is5-ssl.mzstatic.com/image/thumb/Music125/v4/a0/4d/c4/a04dc484-03cc-02aa-fa82-5334fcb4bc16/18UMGIM24878.rgb.jpg/100x100bb.jpg"),
             )
 
-        val searchToolBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.searchToolbar)
 
-        searchToolBar.setNavigationOnClickListener {
+        binding.searchToolbar.setNavigationOnClickListener {
             finish()
         }
 
-        val searchEditText = findViewById<EditText>(R.id.searchEditText)
-        val clearEditTextButton = findViewById<ImageButton>(R.id.clearButton)
-
         if (savedInstanceState != null) {
-            searchEditText.setText(searchStringValue)
-            clearEditTextButton.isVisible = !searchEditText.text.isNullOrEmpty()
+            binding.searchEditText.setText(searchStringValue)
+            binding.clearButton.isVisible = !binding.searchEditText.text.isNullOrEmpty()
         }
 
-        clearEditTextButton.setOnClickListener {
-            searchEditText.text.clear()
-            clearEditTextButton.visibility = View.INVISIBLE
+        binding.clearButton.setOnClickListener {
+            binding.searchEditText.text.clear()
+            binding.clearButton.visibility = View.INVISIBLE
             val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputManager.hideSoftInputFromWindow(searchEditText.windowToken, 0)
+            inputManager.hideSoftInputFromWindow(binding.searchEditText.windowToken, 0)
         }
 
-        searchEditText.addTextChangedListener(
+        binding.searchEditText.addTextChangedListener(
             onTextChanged = {s: CharSequence?, start: Int, before: Int, count: Int ->
                 searchStringValue = s.toString()
-                clearEditTextButton.isVisible = !searchStringValue.isNullOrEmpty()
+                binding.clearButton.isVisible = !searchStringValue.isNullOrEmpty()
             }
         )
 
