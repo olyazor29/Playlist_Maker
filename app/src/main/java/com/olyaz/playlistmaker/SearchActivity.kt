@@ -1,6 +1,5 @@
 package com.olyaz.playlistmaker
 
-
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -19,9 +18,9 @@ private const val SEARCH_VALUE_KEY = "SEARCH_EDIT_TEXT_VALUE"
 
 class SearchActivity : AppCompatActivity() {
 
+    private var searchHistoryTracks =  ArrayList<Track>()
     private var searchStringValue: String? = null
     private lateinit var binding: ActivitySearchBinding
-
 
     private val iTunesSearchBaseUrl= "https://itunes.apple.com"
     private val retrofit = Retrofit.Builder()
@@ -31,15 +30,35 @@ class SearchActivity : AppCompatActivity() {
 
     private val iTunesSearchService = retrofit.create(ITunesSearchAPI::class.java)
     private val listOfTracks = ArrayList<Track>()
-    private val trackAdapter = TrackAdapter()
+    private lateinit var trackAdapter: TrackAdapter
+    private val trackHistoryAdapter = TrackHistoryAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val searchHistory = SearchHistory(getSharedPreferences(USER_PREFERENCES, MODE_PRIVATE))
+        trackAdapter = TrackAdapter { track: Track ->
+            searchHistory.addNewItemToHistory(track, trackHistoryAdapter)
+        }
+
+        searchHistoryTracks = searchHistory.readHistoryFromSharedPref()
+
         trackAdapter.tracks = listOfTracks
         binding.searchRecyclerView.adapter = trackAdapter
+
+        trackHistoryAdapter.tracksHistory = searchHistoryTracks
+        binding.searchHistoryRecyclerView.adapter = trackHistoryAdapter
+
+
+        binding.searchEditText.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus && binding.searchEditText.text.isEmpty() && searchHistoryTracks.isNotEmpty()) {
+                binding.searchHistory.show()
+            } else {
+                binding.searchHistory.gone()
+            }
+        }
 
         binding.searchToolbar.setNavigationOnClickListener {
             finish()
@@ -55,16 +74,21 @@ class SearchActivity : AppCompatActivity() {
             binding.clearButton.hide()
             val inputManager = getSystemService<InputMethodManager>()
             inputManager?.hideSoftInputFromWindow(binding.searchEditText.windowToken, 0)
-            binding.searchRecyclerView.gone()
-            binding.placeholderMessage.gone()
             listOfTracks.clear()
             trackAdapter.notifyDataSetChanged()
+            binding.searchRecyclerView.gone()
+            binding.placeholderMessage.gone()
         }
 
         binding.searchEditText.addTextChangedListener(
             onTextChanged = {s: CharSequence?, start: Int, before: Int, count: Int ->
                 searchStringValue = s.toString()
                 binding.clearButton.isVisible = !searchStringValue.isNullOrEmpty()
+                if (binding.searchEditText.hasFocus() && s?.isEmpty() == true && searchHistoryTracks.isNotEmpty()) {
+                    binding.searchHistory.show()
+                } else {
+                    binding.searchHistory.gone()
+                }
             }
         )
 
@@ -78,6 +102,13 @@ class SearchActivity : AppCompatActivity() {
 
         binding.placeholderButton.setOnClickListener {
             searchSongs()
+        }
+
+        binding.clearSearchHistoryButton.setOnClickListener {
+            searchHistory.clearSearchHistory()
+            trackHistoryAdapter.tracksHistory.clear()
+            trackHistoryAdapter.notifyDataSetChanged()
+            binding.searchHistory.gone()
         }
     }
 
@@ -139,4 +170,5 @@ class SearchActivity : AppCompatActivity() {
             }
         }
     }
+
 }

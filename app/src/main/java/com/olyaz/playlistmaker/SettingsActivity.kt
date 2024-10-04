@@ -8,31 +8,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
+import com.olyaz.playlistmaker.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySettingsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val settingsToolBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.settings_Toolbar)
+        val sharedPrefs = getSharedPreferences(USER_PREFERENCES, MODE_PRIVATE)
 
-        settingsToolBar.setNavigationOnClickListener {
+        binding.settingsToolbar.setNavigationOnClickListener {
             finish()
         }
 
-        val shareTextView = findViewById<MaterialTextView>(R.id.shareTextView)
-        shareTextView.setOnClickListener {
+        binding.shareTextView.setOnClickListener {
             val shareIntent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, getString(R.string.course_link))
                 type = "text/plain"
             }
-
             startActivity(Intent.createChooser(shareIntent, null))
         }
 
-        val supportTextView = findViewById<MaterialTextView>(R.id.supportTextView)
-        supportTextView.setOnClickListener {
+        binding.supportTextView.setOnClickListener {
             val supportIntent = Intent().apply {
                 action = Intent.ACTION_SENDTO
                 data = Uri.parse("mailto:${getString(R.string.student_email)}")
@@ -45,26 +47,20 @@ class SettingsActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, getString(R.string.mail_error), Toast.LENGTH_SHORT).show()
             }
-
-
         }
 
-        val agreementTextView = findViewById<MaterialTextView>(R.id.agreementTextView)
-        agreementTextView.setOnClickListener {
+        binding.agreementTextView.setOnClickListener {
             val agreementIntent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.agreement_link)))
             startActivity(agreementIntent)
         }
 
+        binding.themeSwitch.isChecked = (applicationContext as App).darkTheme
 
-        val themeSwitch = findViewById<SwitchMaterial>(R.id.themeSwitch)
-        themeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                themeSwitch.isChecked = true
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                themeSwitch.isChecked = false
-            }
+        binding.themeSwitch.setOnCheckedChangeListener { switcher, isChecked ->
+            (applicationContext as App).switchTheme(isChecked)
+            sharedPrefs.edit()
+                .putBoolean(IS_DARK_THEME, isChecked)
+                .apply()
         }
     }
 }
