@@ -7,4 +7,5 @@
     <color name="gray">#AEAFB4</color>
     <color name="button_background_color_light">#251A1B22</color>
     <color name="button_background_color_night">#25FFFFFF</color>
+    <color name="light_blue_switch">#9FBBF3</color>
 </resources>

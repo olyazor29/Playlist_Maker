@@ -9,6 +9,8 @@
         <item name="colorTertiary">@color/light_gray</item>
         <item name="colorOnTertiary">@color/gray</item>
         <item name="backgroundColor">@color/button_background_color_light</item>
+        <item name="thumbColor">@color/gray</item>
+        <item name="trackColor">@color/light_gray</item>
         
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->

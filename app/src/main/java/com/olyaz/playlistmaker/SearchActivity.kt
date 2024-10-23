@@ -91,6 +91,8 @@ class SearchActivity : AppCompatActivity() {
                 searchStringValue = s.toString()
                 binding.clearButton.isVisible = !searchStringValue.isNullOrEmpty()
                 if (binding.searchEditText.hasFocus() && s?.isEmpty() == true && searchHistoryTracks.isNotEmpty()) {
+                    binding.searchRecyclerView.gone()
+                    binding.placeholderMessage.gone()
                     binding.searchHistory.show()
                 } else {
                     binding.searchHistory.gone()

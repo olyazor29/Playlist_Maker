@@ -23,8 +23,8 @@
         android:gravity="center_vertical"
 
         android:text="@string/night_mode"
-        app:thumbTint="@color/gray"
-        app:trackTint="@color/light_gray"
+        app:thumbTint="?attr/thumbColor"
+        app:trackTint="?attr/trackColor"
         android:textAppearance="@style/SettingsTextStyle"
 
 
