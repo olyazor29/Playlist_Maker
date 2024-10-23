@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AudioPlayerActivity"
+    android:background="?attr/colorPrimary">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/playerToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:navigationIcon="@drawable/arrow_back_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp"/>
+    
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivTrackCover"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@id/playerToolbar"
+        android:layout_marginTop="26dp"
+        app:layout_constraintBottom_toTopOf="@id/tvTrackName"
+        android:layout_marginBottom="24dp"
+
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundedImageView"
+        tools:src="@drawable/placeholder_cover"/>
+
+    <TextView
+        android:id="@+id/tvTrackName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintBottom_toTopOf="@id/tvTrackArtist"
+        android:layout_marginBottom="12dp"
+
+        android:textAppearance="@style/ScreenHeaderTextStyle"
+        android:textFontWeight="400"
+        tools:text="Example Track Name"/>
+
+    <TextView
+        android:id="@+id/tvTrackArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintBottom_toTopOf="@id/ibAdd"
+        android:layout_marginBottom="54dp"
+
+        android:fontFamily="@font/ys_display_medium"
+        android:textFontWeight="400"
+        android:textSize="14sp"
+        android:textColor="?attr/colorOnPrimary"
+        tools:text="Example Artist Name"/>
+
+    <ImageButton
+        android:id="@+id/ibAdd"
+        android:layout_width="@dimen/button_size_player"
+        android:layout_height="@dimen/button_size_player"
+
+        app:layout_constraintBottom_toTopOf="@id/tvTrackDuration"
+        android:layout_marginBottom="84dp"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintEnd_toStartOf="@+id/ibPlay"
+
+        android:src="@drawable/add_round_button"
+        android:background="@drawable/round_button"/>
+
+    <ImageButton
+        android:id="@+id/ibPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toTopOf="@id/tvTrackDuration"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintStart_toEndOf="@id/ibAdd"
+        app:layout_constraintEnd_toStartOf="@+id/ibLike"
+
+        android:src="@drawable/play_round_button"
+        android:background="?attr/colorPrimary" />
+
+    <ImageButton
+        android:id="@+id/ibLike"
+        android:layout_width="@dimen/button_size_player"
+        android:layout_height="@dimen/button_size_player"
+
+        app:layout_constraintBottom_toTopOf="@id/tvTrackDuration"
+        android:layout_marginBottom="84dp"
+        app:layout_constraintStart_toEndOf="@id/ibPlay"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+
+        android:src="@drawable/like_round_button"
+        android:background="@drawable/round_button"/>
+
+    <TextView
+        android:id="@+id/tvCurrentPlayingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvTrackDuration"
+        android:layout_marginBottom="40dp"
+
+        android:fontFamily="@font/ys_display_medium"
+        android:textFontWeight="400"
+        android:textSize="14sp"
+        android:textColor="?attr/colorOnPrimary"
+        android:text="@string/time_example"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/middle_margin"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackCollection"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:text="@string/duration"
+        android:textAppearance="@style/PlayerTrackDataTextStyle"/>
+
+    <TextView
+        android:id="@+id/tvTrackDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/middle_margin"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackCollection"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:textAppearance="@style/PlayerTrackDataTextStyle"
+        android:textColor="?attr/colorOnPrimary" />
+
+    <TextView
+        android:id="@+id/tvCollection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/middle_margin"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackYear"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:text="@string/album"
+        android:textAppearance="@style/PlayerTrackDataTextStyle"/>
+
+    <TextView
+        android:id="@+id/tvTrackCollection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/middle_margin"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackYear"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:textAppearance="@style/PlayerTrackDataTextStyle"
+        android:textColor="?attr/colorOnPrimary" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/collectioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="tvCollection,tvTrackCollection" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/middle_margin"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackGenre"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:text="@string/year"
+        android:textAppearance="@style/PlayerTrackDataTextStyle"/>
+
+    <TextView
+        android:id="@+id/tvTrackYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/middle_margin"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackGenre"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:textAppearance="@style/PlayerTrackDataTextStyle"
+        android:textColor="?attr/colorOnPrimary" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/middle_margin"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackCountry"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:text="@string/genre"
+        android:textAppearance="@style/PlayerTrackDataTextStyle"/>
+
+    <TextView
+        android:id="@+id/tvTrackGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/middle_margin"
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackCountry"
+        android:layout_marginBottom="@dimen/middle_margin"
+
+        android:textAppearance="@style/PlayerTrackDataTextStyle"
+        android:textColor="?attr/colorOnPrimary" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/middle_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="28dp"
+
+        android:text="@string/country"
+        android:textAppearance="@style/PlayerTrackDataTextStyle"/>
+
+    <TextView
+        android:id="@+id/tvTrackCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/middle_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="28dp"
+
+        android:textAppearance="@style/PlayerTrackDataTextStyle"
+        android:textColor="?attr/colorOnPrimary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

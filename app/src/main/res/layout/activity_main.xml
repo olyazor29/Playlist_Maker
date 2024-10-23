@@ -17,8 +17,8 @@
         android:textColor="?attr/colorOnSecondary"
 
         android:paddingTop="14dp"
-        android:paddingBottom="@dimen/middle_padding"
-        android:paddingStart="@dimen/middle_padding" />
+        android:paddingBottom="@dimen/middle_margin"
+        android:paddingStart="@dimen/middle_margin" />
     
     <Button
         android:id="@+id/search_button"

@@ -1,12 +1,15 @@
 package com.olyaz.playlistmaker
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import com.google.gson.Gson
 import com.olyaz.playlistmaker.databinding.ActivitySearchBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,7 +34,9 @@ class SearchActivity : AppCompatActivity() {
     private val iTunesSearchService = retrofit.create(ITunesSearchAPI::class.java)
     private val listOfTracks = ArrayList<Track>()
     private lateinit var trackAdapter: TrackAdapter
-    private val trackHistoryAdapter = TrackHistoryAdapter()
+    private val trackHistoryAdapter = TrackHistoryAdapter { track: Track ->
+        startPlayerActivity(track)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,7 @@ class SearchActivity : AppCompatActivity() {
         val searchHistory = SearchHistory(getSharedPreferences(USER_PREFERENCES, MODE_PRIVATE))
         trackAdapter = TrackAdapter { track: Track ->
             searchHistory.addNewItemToHistory(track, trackHistoryAdapter)
+            startPlayerActivity(track)
         }
 
         searchHistoryTracks = searchHistory.readHistoryFromSharedPref()
@@ -85,6 +91,8 @@ class SearchActivity : AppCompatActivity() {
                 searchStringValue = s.toString()
                 binding.clearButton.isVisible = !searchStringValue.isNullOrEmpty()
                 if (binding.searchEditText.hasFocus() && s?.isEmpty() == true && searchHistoryTracks.isNotEmpty()) {
+                    binding.searchRecyclerView.gone()
+                    binding.placeholderMessage.gone()
                     binding.searchHistory.show()
                 } else {
                     binding.searchHistory.gone()
@@ -171,4 +179,10 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    private fun startPlayerActivity(track: Track) {
+        val trackJson = Gson().toJson(track)
+        val intent = Intent(this, AudioPlayerActivity::class.java)
+        intent.putExtra(TRACK_KEY, trackJson)
+        startActivity(intent)
+    }
 }

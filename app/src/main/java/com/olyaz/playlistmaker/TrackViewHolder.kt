@@ -20,7 +20,7 @@ class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun bind(model: Track) {
         trackName.text = model.trackName
-        val trackTimeAsString = SimpleDateFormat("mm:ss", Locale.getDefault()).format(model.trackTimeMillis)
+        val trackTimeAsString = convertTimeToRightFormat(model.trackTimeMillis)
         trackInfo.text = "${model.artistName} • $trackTimeAsString"
 
         Glide.with(itemView)
@@ -41,3 +41,8 @@ fun dpToPx(dp: Float, context: Context): Int {
         dp,
         context.resources.displayMetrics).toInt()
 }
+
+fun convertTimeToRightFormat(millis: Long): String {
+    return SimpleDateFormat("mm:ss", Locale.getDefault()).format(millis)
+}
+

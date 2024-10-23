@@ -24,7 +24,7 @@
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:layout_marginHorizontal="@dimen/middle_padding"
+            android:layout_marginHorizontal="@dimen/middle_margin"
             android:layout_marginVertical="@dimen/button_icon_padding"
             android:background="@drawable/search_button"
             android:drawableStart="@drawable/search_smaller"
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_marginTop="@dimen/middle_padding"/>
+            android:layout_marginTop="@dimen/middle_margin"/>
 
         <LinearLayout
             android:id="@+id/placeholderMessage"
@@ -90,7 +90,7 @@
                 android:fontFamily="@font/ys_display_medium"
                 android:textFontWeight="400"
                 android:layout_marginHorizontal="@dimen/header_margin"
-                android:layout_marginTop="@dimen/middle_padding"/>
+                android:layout_marginTop="@dimen/middle_margin"/>
 
             <Button
                 android:id="@+id/placeholderButton"
