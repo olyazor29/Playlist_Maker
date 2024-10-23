@@ -30,7 +30,7 @@
 
         android:layout_marginTop="@dimen/header_margin"
         android:paddingVertical="@dimen/settings_text_vertical_padding"
-        android:paddingStart="@dimen/middle_padding"
+        android:paddingStart="@dimen/middle_margin"
         android:paddingEnd="18dp"/>
 
     <com.google.android.material.textview.MaterialTextView

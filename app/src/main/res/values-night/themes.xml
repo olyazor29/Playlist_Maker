@@ -10,5 +10,6 @@
         <item name="colorAccent">@color/white</item>
         <item name="colorTertiary">@color/white</item>
         <item name="colorOnTertiary">@color/black</item>
+        <item name="backgroundColor">@color/button_background_color_night</item>
     </style>
 </resources>
